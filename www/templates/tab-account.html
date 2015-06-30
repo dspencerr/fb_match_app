@@ -1,0 +1,56 @@
+<ion-view view-title="Account">
+    <ion-content>
+        <ion-list>
+            <ion-toggle ng-model="settings.enableFriends">
+                Enable Friends
+            </ion-toggle>
+
+            <label class="item">
+                <button class="button button-block button-positive" ng-click="fbLogin()">
+                    Login with Facebook
+                </button>
+            </label>
+
+            <div class="list card">
+                <div class="item">
+                    <h2>{{user.name}}</h2>
+
+                    <p>{{user.city}}</p>
+                </div>
+                <div class="item item-body">
+                    <img src="http://graph.facebook.com/{{user.id}}/picture?width=270&height=270"/>
+                </div>
+            </div>
+
+
+            <textarea ng-model="message"></textarea>
+            <a class="tab-item" ng-click="share()">
+                <i class="icon ion-share"></i>
+                Share
+            </a>
+
+            <label class="item">
+                <button class="button button-block button-positive" ng-click="getFriends()">
+                    Load Friend List
+                </button>
+            </label>
+
+        </ion-list>
+    </ion-content>
+
+    <ion-content class="has-header">
+        <label class="item">
+            <button class="button button-block button-positive" ng-click="getFriends()">
+                Load Friend List
+            </button>
+        </label>
+        <ion-list>
+            <ion-item ng-repeat="friend in friends">
+                <img ng-src="{{friend.picture.data.url}}" />
+                {{friend.name}}
+                <div class="button button-small pull-right">Match</div>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>
