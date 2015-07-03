@@ -1,0 +1,49 @@
+<ion-view view-title="{{ 'match' | translate }}">
+	<ion-header-bar align-title="left" class="bar-subheader">
+		<ion-list>
+			<ion-item ng-repeat="friend in selectedFriends"
+						 class="item-remove-animate item-add-animate"
+						 on-swipe-left="deselectFriend(friend)"
+					>
+
+			 {{ friend.name }}
+				<div class="button"
+					  ng-click="log('click')"
+
+						>Remove
+				</div>
+			</ion-item>
+		</ion-list>
+	</ion-header-bar>
+
+	<ion-content>
+
+		<div class="button" ng-click="getMorePermissions()">Get Permissions</div>
+
+
+
+
+
+		<ion-list>
+			<ion-item ng-repeat="friend in friends"
+						 class="item-remove-animate"
+						 on-swipe-right="selectFriend(friend)"
+						 on-swipe-left="selectFriend(friend)"
+
+
+					>
+				<ion-delete-button class="ion-minus-circled"></ion-delete-button>
+				<img ng-src="{{ friend.picture.data.url }}"/>
+			 {{ friend.name }}
+				<div class="button"
+					  ng-click="log('click')"
+
+						>Match
+				</div>
+
+				<ion-option-button class="button-balanced icon ion-plus-circled"></ion-option-button>
+			</ion-item>
+		</ion-list>
+
+	</ion-content>
+</ion-view>

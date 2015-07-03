@@ -1,0 +1,11 @@
+<ion-view view-title="{{ 'invite' | translate }}">
+	<ion-content class="padding">
+		<ion-list>
+			<ion-item ng-repeat="friend in friends">
+				<img ng-src="{{ friend.picture.data.url }}"/>
+			 {{ friend.name }}
+				<div class="button button-small pull-right">Match</div>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

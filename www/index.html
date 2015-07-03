@@ -12,22 +12,37 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/angular-resource/angular-resource.min.js"></script>
+    <script src="lib/angular-translate/angular-translate.min.js"></script>
+    <script src="lib/ng-lodash/build/ng-lodash.min.js"></script>
+
     <!-- your app's js -->
     <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
+
+    <script src="js/services/authenticated.js"></script>
+
+    <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/splash.js"></script>
+    <script src="js/controllers/invite.js"></script>
+    <script src="js/controllers/match.js"></script>
+
+
 
 
     <script src="lib/fb/openfb.js"></script>
     <script src="lib/fb/ngopenfb.js"></script>
+
+    <!-- language must be loaded after 'main' -->
+    <script src="js/i18n/en.js"></script>
+
   </head>
-  <body ng-app="starter">
+  <body ng-app="main">
     <!--
       The nav bar that will be updated as we navigate between views.
     -->

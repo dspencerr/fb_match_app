@@ -1,5 +1,27 @@
-<label class="item">
-    <button class="button button-block button-positive" ng-click="fbLogin()">
-        Login with Facebook
-    </button>
-</label>
+<ion-view hide-nav-bar="true">
+    <ion-content class="padding center">
+
+        <div class="text-center">
+            <img class="logo" src="/img/matchMaker.png" />
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+        <div class="text-center">
+            <button class="button button-positive" ng-click="fbLogin()">
+                <i class="icon ion-social-facebook"></i>
+                &nbsp;
+				{{ 'loginWithFacebook' | translate }}
+            </button>
+        </div>
+
+        <br />
+        <br />
+
+
+
+    </ion-content>
+
+</ion-view>

@@ -1,6 +1,6 @@
 var m = angular.module('starter.controllers', ['ngOpenFB']);
 
-m.controller('DashCtrl', function($scope) {
+m.controller('SplashCtrl', function($scope) {
 });
 
 m.controller('ChatsCtrl', function($scope, Chats) {
@@ -32,14 +32,14 @@ m.controller('AccountCtrl', function($scope, ngFB) {
 
 	$scope.fbLogin = function() {
 		ngFB.login({scope: 'publish_actions,user_friends'}).then(
-				function(response) {
-					if (response.status === 'connected') {
-						console.log('Facebook login succeeded');
-						$scope.closeLogin();
-					} else {
-						alert('Facebook login failed');
-					}
-				});
+			function(response) {
+				if (response.status === 'connected') {
+					console.log('Facebook login succeeded');
+					$scope.closeLogin();
+				} else {
+					alert('Facebook login failed');
+				}
+			});
 	};
 
 	ngFB.api({
@@ -50,7 +50,6 @@ m.controller('AccountCtrl', function($scope, ngFB) {
 	}, function(error) {
 		alert('Facebook error: ' + error.error_description);
 	});
-
 
 
 	$scope.share = function(event) {
