@@ -6,3 +6,5 @@ platforms/
 plugins/
 .idea/
 www/lib/
+e2eTests/results.json
+e2eTests/tmp/
