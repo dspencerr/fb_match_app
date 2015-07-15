@@ -43,3 +43,7 @@
 img.logo {
 	max-width: 90%;
 }
+
+.list-inset .tabs {
+	border: 1px solid #ddd;
+}

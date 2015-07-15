@@ -5,11 +5,11 @@ angular.module('main')
 			ngFB.login({scope: 'user_friends'}).then(loginSuccessful);
 		};
 
-		var redirectToSplash = function(){
+		var redirectToSplash = function() {
 			$state.go('splash');
 		};
 
-		var loginSuccessful = function(response){
+		var loginSuccessful = function(response) {
 			if (response.status === 'connected') {
 				redirectToSplash();
 

@@ -4,7 +4,9 @@ angular.module('main').config(function($translateProvider) {
 		'setUpFriends': 'Set up your friends',
 		'inviteFriendsToSetYouUp': 'Invite friends to set you up',
 		'invite': 'Get the Hookup',
-		'match': 'Match Maker',
+		'matchMaker': 'Match Maker',
+		'match': 'Match',
+		'remove': 'Remove',
 
 		'version': 'Version',
 		'build': 'Build',

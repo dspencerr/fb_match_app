@@ -7,22 +7,23 @@ angular.module('main')
 			ngFB.login({scope: 'publish_actions,user_friends'}).then(permissionSuccessful);
 		};
 
-		var permissionSuccessful = function(){
+		var permissionSuccessful = function() {
 			console.log('We now can post.');
 		};
 
-		$scope.log = function(msg){
+		$scope.log = function(msg) {
 			console.log(msg);
 		};
 
 		$scope.friends = [];
 		$scope.selectedFriends = [];
 
-		$scope.selectFriend = function(friend){
+		$scope.selectFriend = function(friend) {
 			$scope.selectedFriends = lodash.union($scope.selectedFriends, [friend]);
 			$scope.friends.splice(lodash.indexOf($scope.friends, friend), 1);
 		};
-		$scope.deselectFriend = function(friend){
+		$scope.deselectFriend = function(friend) {
+			$scope.friends = lodash.union($scope.friends, [friend]);
 			$scope.selectedFriends = lodash.without($scope.selectedFriends, friend);
 		};
 
@@ -37,8 +38,6 @@ angular.module('main')
 		}, function() {
 			alert('An error occurred while loading this session on Facebook');
 		});
-
-
 
 
 	});
