@@ -1,0 +1,21 @@
+<ion-content ng-show="selectedFriend.name === undefined">
+
+	<ion-list>
+		<ion-item ng-repeat="friend in friends"
+					 class="item-remove-animate"
+					 on-swipe-right="selectFriend(friend)"
+					 on-swipe-left="selectFriend(friend)"
+				>
+			<img ng-src="http://graph.facebook.com/{{ friend.id }}/picture?type=square"/>
+		  {{ friend.name }}
+			<div class="button button-small"
+				  ng-click="selectFriend(friend)">
+			 {{ 'match' | translate }}
+			</div>
+
+			<ion-option-button class="button-balanced icon ion-plus-circled"></ion-option-button>
+		</ion-item>
+	</ion-list>
+
+</ion-content>
+

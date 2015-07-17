@@ -9,12 +9,13 @@ angular.module('main', [
 	'ionic',
 	'main.services',
 	'pascalprecht.translate',
-	'ngOpenFB',
+	//'ngOpenFB',
 	'ngLodash'
 ])
 
-	.run(function($ionicPlatform, ngFB) {
-		ngFB.init({appId: '1453157738339194'});
+	.run(function($ionicPlatform) {
+		//ngFB.init({appId: '1453157738339194'});  //Match
+		//ngFB.init({appId: '1039273636103437'});	//MatchMaker
 
 		//ngFB.revokePermissions();
 
@@ -24,6 +25,12 @@ angular.module('main', [
 			if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
+
+			if (window.cordova.platformId == "browser") {
+				facebookConnectPlugin.browserInit(1039273636103437, 'v2.4');
+				// version is optional. It refers to the version of API you may want to use.
+			}
+
 			if (window.StatusBar) {
 				// org.apache.cordova.statusbar required
 				StatusBar.styleLightContent();
@@ -75,26 +82,28 @@ angular.module('main', [
 						controller: 'InviteCtrl'
 					}
 				}
-			})
-			.state('tab.chat-detail', {
-				url: '/chats/:chatId',
-				views: {
-					'tab-chats': {
-						templateUrl: 'templates/chat-detail.html',
-						controller: 'ChatDetailCtrl'
-					}
-				}
-			})
-
-			.state('tab.account', {
-				url: '/account',
-				views: {
-					'tab-account': {
-						templateUrl: 'templates/tab-account.html',
-						controller: 'AccountCtrl'
-					}
-				}
 			});
+
+
+			//.state('tab.chat-detail', {
+			//	url: '/chats/:chatId',
+			//	views: {
+			//		'tab-chats': {
+			//			templateUrl: 'templates/chat-detail.html',
+			//			controller: 'ChatDetailCtrl'
+			//		}
+			//	}
+			//})
+			//
+			//.state('tab.account', {
+			//	url: '/account',
+			//	views: {
+			//		'tab-account': {
+			//			templateUrl: 'templates/tab-account.html',
+			//			controller: 'AccountCtrl'
+			//		}
+			//	}
+			//});
 
 		// if none of the above states are matched, use this as the fallback
 		$urlRouterProvider.otherwise('/login');

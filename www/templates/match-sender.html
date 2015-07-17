@@ -1,0 +1,72 @@
+<ion-content ng-show="selectedFriend.name !== undefined">
+	<div class="list list-inset">
+		<ion-item
+				class="item-avatar item-remove-animate item-add-animate"
+				on-swipe-left="deselectFriend()"
+				on-swipe-right="deselectFriend()">
+			<img ng-src="http://graph.facebook.com/{{ friend.id }}/picture?type=square"/>
+		  {{ selectedFriend.name }}
+			<button class="button button-small"
+					  ng-click="goBack()">
+			 {{ 'chooseNewFriend' | translate }}
+			</button>
+			<ion-option-button class="button-assertive icon ion-minus-circled"
+									 ng-click="deselectFriend()"></ion-option-button>
+		</ion-item>
+
+		<ion-item ng-repeat="friend in targetFriends"
+					 class="item-avatar item-remove-animate item-add-animate"
+					 on-swipe-left="deselectTargetFriend(friend)"
+					 on-swipe-right="deselectTargetFriend(friend)">
+			<img ng-src="{{ friend.picture.data.url }}"/>
+		  {{ friend.name }}
+			<button class="button button-small"
+					  ng-click="deselectTargetFriend(friend)">
+			 {{ 'remove' | translate }}
+			</button>
+			<ion-option-button class="button-assertive icon ion-minus-circled"
+									 ng-click="deselectFriend(friend)"></ion-option-button>
+		</ion-item>
+
+		<div class="item item-body" ng-show="targetFriend.name !== undefined">
+			<img class="full-image" src="img/matchMaker.png">
+
+			<textarea ng-model="personalMessage">
+
+			</textarea>
+		</div>
+
+		<div class="item tabs tabs-secondary tabs-icon-left" ng-show="targetFriend.name !== undefined">
+			<a class="tab-item" href="#">
+				<i class="icon ion-arrow-swap"></i>
+			 {{ 'switch' | translate }}
+			</a>
+			<a class="tab-item" href="#">
+				<i class="icon ion-close-round"></i>
+			 {{ 'nevermind' | translate }}
+			</a>
+			<a class="tab-item" href="#" ng-click="sendRequest()">
+				<i class="icon ion-share"></i>
+			 {{ 'send' | translate }}
+			</a>
+		</div>
+	</div>
+
+
+	<ion-list>
+		<ion-item ng-repeat="friend in invitableFriends"
+					 class="item-remove-animate"
+					 on-swipe-right="selectTargetFriend(friend)"
+					 on-swipe-left="selectTargetFriend(friend)"
+				>
+			<img ng-src="{{ friend.picture.data.url }}"/>
+		  {{ friend.name }}
+			<div class="button button-small"
+				  ng-click="selectTargetFriend(friend)">
+			 {{ 'match' | translate }}
+			</div>
+
+			<ion-option-button class="button-balanced icon ion-plus-circled"></ion-option-button>
+		</ion-item>
+	</ion-list>
+</ion-content>

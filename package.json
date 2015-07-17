@@ -14,5 +14,9 @@
     "gulp-util": "^2.2.14",
     "shelljs": "^0.3.0",
     "protractor-html-screenshot-reporter": "^0.0.19"
-  }
+  },
+  "cordovaPlugins": [],
+  "cordovaPlatforms": [
+    "android"
+  ]
 }
