@@ -4,28 +4,28 @@
 				class="item-avatar item-remove-animate item-add-animate"
 				on-swipe-left="deselectFriend()"
 				on-swipe-right="deselectFriend()">
-			<img ng-src="http://graph.facebook.com/{{ friend.id }}/picture?type=square"/>
-		  {{ selectedFriend.name }}
+			<img ng-src="//graph.facebook.com/{{ friend.id }}/picture?type=square"/>
+			{{ selectedFriend.name }}
 			<button class="button button-small"
-					  ng-click="goBack()">
-			 {{ 'chooseNewFriend' | translate }}
+			        ng-click="goBack()">
+				{{ 'chooseNewFriend' | translate }}
 			</button>
 			<ion-option-button class="button-assertive icon ion-minus-circled"
-									 ng-click="deselectFriend()"></ion-option-button>
+			                   ng-click="deselectFriend()"></ion-option-button>
 		</ion-item>
 
 		<ion-item ng-repeat="friend in targetFriends"
-					 class="item-avatar item-remove-animate item-add-animate"
-					 on-swipe-left="deselectTargetFriend(friend)"
-					 on-swipe-right="deselectTargetFriend(friend)">
+		          class="item-avatar item-remove-animate item-add-animate"
+		          on-swipe-left="deselectTargetFriend(friend)"
+		          on-swipe-right="deselectTargetFriend(friend)">
 			<img ng-src="{{ friend.picture.data.url }}"/>
-		  {{ friend.name }}
+			{{ friend.name }}
 			<button class="button button-small"
-					  ng-click="deselectTargetFriend(friend)">
-			 {{ 'remove' | translate }}
+			        ng-click="deselectTargetFriend(friend)">
+				{{ 'remove' | translate }}
 			</button>
 			<ion-option-button class="button-assertive icon ion-minus-circled"
-									 ng-click="deselectFriend(friend)"></ion-option-button>
+			                   ng-click="deselectFriend(friend)"></ion-option-button>
 		</ion-item>
 
 	</div>
@@ -33,15 +33,15 @@
 
 	<ion-list>
 		<ion-item ng-repeat="friend in invitableFriends"
-					 class="item-remove-animate"
-					 on-swipe-right="selectTargetFriend(friend)"
-					 on-swipe-left="selectTargetFriend(friend)"
+		          class="item-remove-animate"
+		          on-swipe-right="selectTargetFriend(friend)"
+		          on-swipe-left="selectTargetFriend(friend)"
 				>
 			<img ng-src="{{ friend.picture.data.url }}"/>
-		  {{ friend.name }}
+			{{ friend.name }}
 			<div class="button button-small"
-				  ng-click="selectTargetFriend(friend)">
-			 {{ 'match' | translate }}
+			     ng-click="selectTargetFriend(friend)">
+				{{ 'match' | translate }}
 			</div>
 
 			<ion-option-button class="button-balanced icon ion-plus-circled"></ion-option-button>
