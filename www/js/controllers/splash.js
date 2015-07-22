@@ -1,5 +1,5 @@
 angular.module('main')
-	.controller('SplashCtrl', function($scope, ngFB) {
+	.controller('SplashCtrl', function($scope) {
 
 
 

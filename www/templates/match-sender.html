@@ -28,28 +28,6 @@
 									 ng-click="deselectFriend(friend)"></ion-option-button>
 		</ion-item>
 
-		<div class="item item-body" ng-show="targetFriend.name !== undefined">
-			<img class="full-image" src="img/matchMaker.png">
-
-			<textarea ng-model="personalMessage">
-
-			</textarea>
-		</div>
-
-		<div class="item tabs tabs-secondary tabs-icon-left" ng-show="targetFriend.name !== undefined">
-			<a class="tab-item" href="#">
-				<i class="icon ion-arrow-swap"></i>
-			 {{ 'switch' | translate }}
-			</a>
-			<a class="tab-item" href="#">
-				<i class="icon ion-close-round"></i>
-			 {{ 'nevermind' | translate }}
-			</a>
-			<a class="tab-item" href="#" ng-click="sendRequest()">
-				<i class="icon ion-share"></i>
-			 {{ 'send' | translate }}
-			</a>
-		</div>
 	</div>
 
 

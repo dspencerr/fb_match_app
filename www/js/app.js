@@ -9,7 +9,7 @@ angular.module('main', [
 	'ionic',
 	'main.services',
 	'pascalprecht.translate',
-	//'ngOpenFB',
+	'facebookConnect',
 	'ngLodash'
 ])
 
@@ -26,7 +26,7 @@ angular.module('main', [
 				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 			}
 
-			if (window.cordova.platformId == "browser") {
+			if (window.cordova && window.cordova.platformId == "browser") {
 				facebookConnectPlugin.browserInit(1039273636103437, 'v2.4');
 				// version is optional. It refers to the version of API you may want to use.
 			}

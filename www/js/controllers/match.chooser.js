@@ -1,5 +1,5 @@
 angular.module('main')
-	.controller('MatchChooserCtrl', function($scope, ngFB, lodash) {
+	.controller('MatchChooserCtrl', function($scope, fbConnect) {
 
 		$scope.friends = [];
 
@@ -7,17 +7,16 @@ angular.module('main')
 			$scope.$parent.selectedFriend = friend;
 		};
 
-		ngFB.api({
-			method: 'GET',
-			path: '/me/friends'
-		}).then(function(response) {
+		var loadFriends = function(response) {
+			$scope.friends = response.data;
+		};
 
-			if (response && !response.error) {
-				$scope.friends = response.data;
-			}
-		}, function() {
-			alert('An error occurred while loading this session on Facebook');
-		});
+		var loadFriendsFailed = function(response) {
+			alert(JSON.stringify(response, null, 2));
+		};
+
+		fbConnect.friends()
+			.then(loadFriends, loadFriendsFailed);
 
 
 	});

@@ -1,5 +1,5 @@
 angular.module('main')
-	.factory('Authenticated', function(ngFB){
+	.factory('Authenticated', function(){
 		return function($q, user, $state, $timeout) {
 
 

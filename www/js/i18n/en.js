@@ -7,11 +7,12 @@ angular.module('main').config(function($translateProvider) {
 		'matchMaker': 'Match Maker',
 		'match': 'Match',
 		'remove': 'Remove',
+		'makeMatchMessage': 'I found someone for you to take out on a date. Check them out, and if you like them, I\'ll make an introduction. \nMessage me if you have any questions about them.',
 
 		'version': 'Version',
 		'build': 'Build',
 		'cancel': 'Cancel',
-		'copyright': '2000-2015 Biofire Diagnostics, LLC all Rights Reserved.  This computer program is protected by copyright law and international treaties.  Unauthorized reproduction or distribution of this program or any portion of it may result in severe civil and criminal penalties, and will be prosecuted to the maximum extent possible under the law.',
+		'copyright': '2000-2015 Red Brick Shack, LLC all Rights Reserved.  This computer program is protected by copyright law and international treaties.  Unauthorized reproduction or distribution of this program or any portion of it may result in severe civil and criminal penalties, and will be prosecuted to the maximum extent possible under the law.',
 		'dashboard': 'Dashboard',
 		'browseExperiments': 'Browse Experiments',
 		'settings': 'Settings',

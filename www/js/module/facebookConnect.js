@@ -1,24 +1,72 @@
 //Wrapper to the facebook connect plugin
-angular.module('facebookConnect')
+angular.module('facebookConnect', [])
 	.factory('fbConnect', function($window, $q) {
 
-		function login(permissions) {
+		var callApi = function(url, permissions){
 			var deferred = $q.defer();
-			$window.facebookConnectPlugin.login(function(result) {
-				if (result.status === "connected") {
-					deferred.resolve(result);
-				} else {
-					deferred.reject(result);
-				}
-			}, options);
+			$window.facebookConnectPlugin.api(url, permissions,
+				function(response) {
+					if(!response.error){
+						deferred.resolve(response);
+					} else {
+						deferred.reject(response);
+					}
+				},
+				function(response) {
+					deferred.reject(response);
+				});
 			return deferred.promise;
-		}
+		};
 
+		var invitableFriends = function(){
+			return callApi('me/invitable_friends?limit=100', ['user_friends']);
+		};
+
+		var friends = function(){
+			return callApi('me/friends', ['user_friends']);
+		};
+
+		var login = function(permissions) {
+			var deferred = $q.defer();
+			var options = permissions || ['email'];
+			$window.facebookConnectPlugin.login(options,
+				function(response) {
+					if (response.status === "connected") {
+						deferred.resolve(response);
+					} else {
+						deferred.reject(response);
+					}
+				},
+				function(response) {
+					deferred.reject(response);
+				});
+			return deferred.promise;
+		};
+
+		var makeMatch = function(options){
+			var deferred = $q.defer();
+			options.method = 'apprequests';
+			$window.facebookConnectPlugin.showDialog(options,
+				function(response) {
+					if(!response.error){
+						deferred.resolve(response);
+					} else {
+						deferred.reject(response);
+					}
+				},
+				function(response) {
+					deferred.reject(response);
+				});
+			return deferred.promise;
+		};
 
 
 
 		return {
-
+			login: login,
+			invitableFriends: invitableFriends,
+			friends: friends,
+			makeMatch: makeMatch
 		}
 
 	});
@@ -27,8 +75,6 @@ angular.module('facebookConnect')
 //facebookConnectPlugin.showDialog( { method: "apprequests", message:'the seconds another explicit message for spencer ', to: '1450003375324474', data: '{somemetadata:546}' },
 //	function (response) { alert(JSON.stringify(response)) },
 //	function (response) { alert(JSON.stringify(response)) });
-
-
 
 
 //var login = function () {
@@ -46,12 +92,8 @@ angular.module('facebookConnect')
 //		function (response) { alert(JSON.stringify(response)) },
 //		function (response) { alert(JSON.stringify(response)) });
 //}
-//
-//var apiTest = function () {
-//	facebookConnectPlugin.api( "me/?fields=id,email", ["user_birthday"],
-//		function (response) { alert(JSON.stringify(response)) },
-//		function (response) { alert(JSON.stringify(response)) });
-//}
+
+
 //var getAccessToken = function () {
 //	facebookConnectPlugin.getAccessToken(
 //		function (response) { alert(JSON.stringify(response)) },

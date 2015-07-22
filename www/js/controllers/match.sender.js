@@ -1,77 +1,69 @@
 angular.module('main')
-	.controller('MatchSenderCtrl', function($scope, ngFB, lodash) {
+	.controller('MatchSenderCtrl', function($scope, $translate, $ionicScrollDelegate, fbConnect) {
 
 		$scope.invitableFriends = [];
 
 		$scope.targetFriend = {};
 		$scope.selectTargetFriend = function(friend) {
 			$scope.targetFriend = friend;
-			$scope.buildPersonalMessage();
+			buildPersonalMessage();
+			sendRequest();
+			$ionicScrollDelegate.scrollTop();
 		};
 		$scope.deselectTargetFriend = function(friend) {
 			$scope.targetFriend = {};
 		};
-
-
-		//$scope.targetFriends = [];
-		//$scope.selectTargetFriend = function(friend){
-		//	$scope.targetFriends = lodash.union($scope.targetFriends, [friend]);
-		//	$scope.invitableFriends.splice(lodash.indexOf($scope.invitableFriends, friend), 1);
-		//};
-		//$scope.deselectTargetFriend = function(friend){
-		//	$scope.invitableFriends = lodash.union($scope.invitableFriends, [friend]);
-		//	$scope.targetFriends = lodash.without($scope.targetFriends, friend);
-		//};
 
 		$scope.goBack = function() {
 			$scope.deselectTargetFriend();
 			$scope.deselectFriend();
 		};
 
-		ngFB.api({
-			method: 'GET',
-			path: '/me/invitable_friends'
-		}).then(function(response) {
-			if (response && !response.error) {
-				$scope.invitableFriends = response.data;
-			}
-		}, function() {
-			alert('An error occurred while loading this session on Facebook');
+		var buildPersonalMessage = function() {
+			$scope.personalMessage = $scope.targetFriend.name.split(' ')[0];
+			$scope.personalMessage += ' - ';
+			$scope.personalMessage += $scope.translatedMessage;
+		};
+
+		//Small chance that this doesn't finish in time?
+		$translate('makeMatchMessage').then(function(translation) {
+			$scope.translatedMessage = translation;
 		});
 
 
-		$scope.personalMessage = 'Hey [name], I found someone for you to take out on a date. Check them out, and if you like them, I\'ll make an introduction.';
-		$scope.personalMessage += '\nMessage me if you have any questions about them.';
-		$scope.buildPersonalMessage = function() {
-			//{{ targetFriend.name.split(\' \')[0] }}
+		var sendRequest = function() {
+			var options = {
+				message: $scope.personalMessage,
+				to: $scope.targetFriend.id,
+				data: {
+					need: 'To add the information about the selected friend here - id and profile page'
+				}
+			};
 
-			$scope.personalMessage = $scope.personalMessage.replace(/\[name\]/, $scope.targetFriend.name.split(' ')[0]);
+			fbConnect.makeMatch(options)
+				.then(matchSent, matchFailed);
+
+		};
+
+		var matchSent = function(response) {
+			alert(JSON.stringify(response, null, 2));
+			$scope.goBack();
+		};
+
+		var matchFailed = function(response) {
+			alert(JSON.stringify(response, null, 2));
 		};
 
 
-		$scope.sendRequest = function() {
+		var loadFriends = function(response) {
+			$scope.invitableFriends = response.data;
+		};
 
-			var message = $scope.personalMessage + '\n' + '<a href="https://www.facebook.com/' + $scope.selectedFriend.id + '">' + $scope.selectedFriend.name + '</a>';
-			var ids = [];
+		var loadFriendsFailed = function(response) {
+			alert(JSON.stringify(response, null, 2));
+		};
 
-			ids.push($scope.targetFriend.id);
-
-			ngFB.api({
-				method: 'POST',
-				path: '/me/apprequests',
-				params: {
-					message: message,
-					ids: ids,
-					action_type: 'INVITE'
-				}
-			}).then(function(response) {
-				alert('message sent');
-			}, function(error) {
-
-
-				alert('An error occurred while loading this session on Facebook');
-			});
-
-		}
+		fbConnect.invitableFriends()
+			.then(loadFriends, loadFriendsFailed);
 
 	});

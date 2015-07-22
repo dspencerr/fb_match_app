@@ -1,5 +1,5 @@
 angular.module('main')
-	.controller('MatchCtrl', function($scope, ngFB) {
+	.controller('MatchCtrl', function($scope, fbConnect) {
 
 		$scope.log = function(msg) {
 			console.log(msg);
@@ -13,12 +13,12 @@ angular.module('main')
 
 		$scope.currentUser = {};
 
-		ngFB.api({path: '/me'})
-			.then(function(res) {
-				angular.extend($scope.currentUser, res);
-			}, function(err) {
-				// error
-			});
+		//ngFB.api({path: '/me'})
+		//	.then(function(res) {
+		//		angular.extend($scope.currentUser, res);
+		//	}, function(err) {
+		//		// error
+		//	});
 
 
 	});
