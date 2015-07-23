@@ -5,9 +5,14 @@ angular.module('main')
 			console.log(msg);
 		};
 
+		$scope.selectFriend = function(){};
+
 		$scope.requests = [];
 
 		var loadRequests = function(response) {
+			angular.forEach(response.data, function(r){
+				r.data = JSON.parse(r.data);
+			});
 			$scope.requests = response.data;
 		};
 

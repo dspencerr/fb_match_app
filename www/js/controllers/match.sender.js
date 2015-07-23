@@ -36,7 +36,8 @@ angular.module('main')
 				message: $scope.personalMessage,
 				to: $scope.targetFriend.id,
 				data: {
-					need: 'To add the information about the selected friend here - id and profile page'
+					dateSent: new Date(),
+					suggestedId: $scope.selectedFriend.id
 				}
 			};
 

@@ -6,19 +6,22 @@
 		<ion-content>
 
 			<ion-list>
-				<ion-item ng-repeat="request in requests"
+				<div ng-repeat="request in requests"
 				          class="item-remove-animate"
 				          on-swipe-right="selectFriend(friend)"
 				          on-swipe-left="selectFriend(friend)"
 						>
+					{{ request.from.name }}
+					{{ request.data.suggestedId }}
+					{{ request.data.dateSent }}
+					{{ request.message }}
 
-					{{ JSON.stringify(request, null, 2) }}
+
 					<div class="button button-small"
 					     ng-click="selectFriend(friend)">
 					</div>
 
-					<ion-option-button class="button-balanced icon ion-plus-circled"></ion-option-button>
-				</ion-item>
+				</div>
 			</ion-list>
 
 		</ion-content>

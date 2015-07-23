@@ -7,6 +7,7 @@ angular.module('main').config(function($translateProvider) {
 		'matchMaker': 'Match Maker',
 		'match': 'Match',
 		'remove': 'Remove',
+		'requests': 'Suggestions',
 		'makeMatchMessage': 'I found someone for you to take out on a date. Check them out, and if you like them, I\'ll make an introduction. \nMessage me if you have any questions about them.',
 
 		'version': 'Version',

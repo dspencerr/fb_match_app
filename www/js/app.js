@@ -75,7 +75,7 @@ angular.module('main', [
 			.state('tab.requests', {
 				url: '/requests',
 				views: {
-					'tab-invite': {
+					'tab-requests': {
 						templateUrl: 'templates/tab-requests.html',
 						controller: 'RequestsCtrl'
 					}
