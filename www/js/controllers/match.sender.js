@@ -66,7 +66,10 @@ angular.module('main')
 			alert(JSON.stringify(response, null, 2));
 		};
 
-		fbConnect.invitableFriends()
-			.then(loadFriends, loadFriendsFailed);
+		setTimeout(function () {
+			fbConnect.invitableFriends()
+				.then(loadFriends, loadFriendsFailed);
+		}, 1000);
+
 
 	});
