@@ -26,6 +26,10 @@ angular.module('facebookConnect', [])
 			return callApi('me/friends', ['user_friends']);
 		};
 
+		var appRequests = function(){
+			return callApi('me/apprequests', ['email']);
+		};
+
 		var login = function(permissions) {
 			var deferred = $q.defer();
 			var options = permissions || ['email'];
@@ -66,7 +70,8 @@ angular.module('facebookConnect', [])
 			login: login,
 			invitableFriends: invitableFriends,
 			friends: friends,
-			makeMatch: makeMatch
+			makeMatch: makeMatch,
+			appRequests: appRequests
 		}
 
 	});

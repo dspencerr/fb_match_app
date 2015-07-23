@@ -1,0 +1,30 @@
+<ion-view view-title="{{ 'requests' | translate }}">
+
+	<div ng-controller="RequestsCtrl">
+
+
+		<ion-content>
+
+			<ion-list>
+				<ion-item ng-repeat="request in requests"
+				          class="item-remove-animate"
+				          on-swipe-right="selectFriend(friend)"
+				          on-swipe-left="selectFriend(friend)"
+						>
+
+					{{ JSON.stringify(request, null, 2) }}
+					<div class="button button-small"
+					     ng-click="selectFriend(friend)">
+					</div>
+
+					<ion-option-button class="button-balanced icon ion-plus-circled"></ion-option-button>
+				</ion-item>
+			</ion-list>
+
+		</ion-content>
+
+
+
+	</div>
+
+</ion-view>

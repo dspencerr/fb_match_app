@@ -10,15 +10,31 @@ angular.module('main')
 			$scope.selectedFriend = {};
 		};
 
+		$scope.friends = [];
+
+		var loadFriends = function(response) {
+			$scope.friends = response.data;
+		};
+
+		var loadFriendsFailed = function(response) {
+			alert(JSON.stringify(response, null, 2));
+		};
+
+		fbConnect.friends()
+			.then(loadFriends, loadFriendsFailed);
 
 		$scope.currentUser = {};
 
-		//ngFB.api({path: '/me'})
-		//	.then(function(res) {
-		//		angular.extend($scope.currentUser, res);
-		//	}, function(err) {
-		//		// error
-		//	});
 
-
+	})
+	.filter('withoutSelected', function() {
+		return function(friends, selectedFriend) {
+			var filtered = [];
+			angular.forEach(friends, function(friend) {
+				if (friend !== selectedFriend) {
+					filtered.push(friend);
+				}
+			});
+			return filtered;
+		};
 	});

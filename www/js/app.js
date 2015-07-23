@@ -7,7 +7,6 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('main', [
 	'ionic',
-	'main.services',
 	'pascalprecht.translate',
 	'facebookConnect',
 	'ngLodash'
@@ -73,7 +72,15 @@ angular.module('main', [
 					}
 				}
 			})
-
+			.state('tab.requests', {
+				url: '/requests',
+				views: {
+					'tab-invite': {
+						templateUrl: 'templates/tab-requests.html',
+						controller: 'RequestsCtrl'
+					}
+				}
+			})
 			.state('tab.invite', {
 				url: '/invite',
 				views: {
