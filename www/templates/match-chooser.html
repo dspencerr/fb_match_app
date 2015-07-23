@@ -6,7 +6,7 @@
 		          on-swipe-right="selectFriend(friend)"
 		          on-swipe-left="selectFriend(friend)"
 				>
-			<img ng-src="//graph.facebook.com/{{ friend.id }}/picture?type=square"/>
+			<img ng-src="https://graph.facebook.com/{{ friend.id }}/picture?type=square"/>
 			{{ friend.name }}
 			<div class="button button-small"
 			     ng-click="selectFriend(friend)">
