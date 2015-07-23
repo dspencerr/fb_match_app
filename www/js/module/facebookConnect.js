@@ -19,7 +19,7 @@ angular.module('facebookConnect', [])
 		};
 
 		var invitableFriends = function(){
-			return callApi('me/invitable_friends?limit=100', ['user_friends']);
+			return callApi('me/invitable_friends?limit=300', ['user_friends']);
 		};
 
 		var friends = function(){
