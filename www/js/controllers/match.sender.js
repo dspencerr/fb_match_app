@@ -1,5 +1,5 @@
 angular.module('main')
-	.controller('MatchSenderCtrl', function($scope, $translate, $ionicScrollDelegate, fbConnect) {
+	.controller('MatchSenderCtrl', function($scope, $translate, $ionicScrollDelegate,$ionicListDelegate, fbConnect) {
 
 		$scope.invitableFriends = [];
 
@@ -42,6 +42,8 @@ angular.module('main')
 
 			fbConnect.makeMatch(options)
 				.then(matchSent, matchFailed);
+
+			$ionicListDelegate.closeOptionButtons(); //this will close any open button from swiping left
 
 		};
 
